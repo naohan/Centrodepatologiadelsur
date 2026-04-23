@@ -1,4 +1,14 @@
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
+const BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '')
+const isProd = import.meta.env.PROD
+
+// En Render (producción) NO existe el proxy de Vite. Si BASE_URL está vacío,
+// las llamadas /api/* irán al mismo dominio del frontend y devolverán 404.
+if (isProd && !BASE_URL) {
+  // eslint-disable-next-line no-console
+  console.warn(
+    '[api] VITE_API_BASE_URL vacío en producción. Configúralo con la URL del backend (Render).'
+  )
+}
 
 async function request(path, { method = 'GET', body, token, headers } = {}) {
   const res = await fetch(`${BASE_URL}${path}`, {
@@ -15,7 +25,9 @@ async function request(path, { method = 'GET', body, token, headers } = {}) {
 
   if (!res.ok) {
     const errPayload = contentType.includes('application/json') ? await res.json().catch(() => null) : null
-    const message = errPayload?.error || `HTTP ${res.status}`
+    const message =
+      errPayload?.error ||
+      (res.status === 404 ? 'No se encontró el recurso solicitado' : `HTTP ${res.status}`)
     const e = new Error(message)
     e.status = res.status
     e.payload = errPayload

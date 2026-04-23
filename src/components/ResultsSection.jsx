@@ -23,12 +23,28 @@ export function ResultsSection() {
     e.preventDefault()
     setError('')
     setData(null)
+
+    const dniValue = dni.trim()
+    const codeValue = code.trim()
+    if (!/^\d{8}$/.test(dniValue)) {
+      setError('DNI inválido (8 dígitos)')
+      return
+    }
+    if (!codeValue) {
+      setError('Ingresa el código de análisis')
+      return
+    }
+
     setLoading(true)
     try {
-      const res = await api.resultados(dni.trim(), code.trim(), 'json')
+      const res = await api.resultados(dniValue, codeValue, 'json')
       setData(res)
     } catch (err) {
-      setError(err?.payload?.error || err.message || 'Error')
+      if (err?.status === 404) {
+        setError('No se encontró un informe con ese DNI y código')
+      } else {
+        setError(err?.payload?.error || err.message || 'Error')
+      }
     } finally {
       setLoading(false)
     }
@@ -38,7 +54,9 @@ export function ResultsSection() {
     setError('')
     setDownloading(true)
     try {
-      const blob = await api.resultados(dni.trim(), code.trim(), 'pdf')
+      const dniValue = dni.trim()
+      const codeValue = code.trim()
+      const blob = await api.resultados(dniValue, codeValue, 'pdf')
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
@@ -48,7 +66,11 @@ export function ResultsSection() {
       a.remove()
       URL.revokeObjectURL(url)
     } catch (err) {
-      setError(err?.payload?.error || err.message || 'Error')
+      if (err?.status === 404) {
+        setError('No se encontró un informe con ese DNI y código')
+      } else {
+        setError(err?.payload?.error || err.message || 'Error')
+      }
     } finally {
       setDownloading(false)
     }
