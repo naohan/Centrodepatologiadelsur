@@ -3,12 +3,14 @@ import { Home } from './pages/Home'
 import { Login } from './pages/Login'
 import { Admin } from './pages/Admin'
 import { RequireAuth } from './components/auth/RequireAuth'
+import { AboutMe } from './pages/AboutMe'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/conoceme" element={<AboutMe />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/admin"

@@ -28,7 +28,6 @@ export function PickupPointsSection() {
               title={point.title}
               address={point.address}
               district={point.district}
-              mapUrl={point.mapUrl}
               whatsappUrl={pickupPoints.whatsappUrl}
             />
           ))}

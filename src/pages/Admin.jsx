@@ -319,9 +319,9 @@ export function Admin() {
                       <Textarea value={pForm.observaciones} onChange={(e) => setPForm((s) => ({ ...s, observaciones: e.target.value }))} />
                     </Field>
                   </div>
-                  <div className="sm:col-span-2 flex items-center justify-between gap-3">
+                  <div className="sm:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-xs text-text-muted">Después podrás seleccionar el paciente para crear la muestra.</p>
-                    <PrimaryButton type="submit" disabled={loading || !canWrite}>
+                    <PrimaryButton type="submit" className="w-full sm:w-auto" disabled={loading || !canWrite}>
                       Registrar paciente
                     </PrimaryButton>
                   </div>
@@ -374,9 +374,9 @@ export function Admin() {
                       <Textarea value={mForm.observaciones} onChange={(e) => setMForm((s) => ({ ...s, observaciones: e.target.value }))} />
                     </Field>
                   </div>
-                  <div className="sm:col-span-2 flex items-center justify-between gap-3">
+                  <div className="sm:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-xs text-text-muted">Necesitas un paciente creado previamente.</p>
-                    <PrimaryButton type="submit" disabled={loading || !canWrite}>
+                    <PrimaryButton type="submit" className="w-full sm:w-auto" disabled={loading || !canWrite}>
                       Registrar muestra
                     </PrimaryButton>
                   </div>
@@ -451,9 +451,9 @@ export function Admin() {
                     </Field>
                   </div>
 
-                  <div className="sm:col-span-2 flex items-center justify-between gap-3">
+                  <div className="sm:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-xs text-text-muted">Requiere una muestra creada previamente.</p>
-                    <PrimaryButton type="submit" disabled={loading || !canWrite}>
+                    <PrimaryButton type="submit" className="w-full sm:w-auto" disabled={loading || !canWrite}>
                       Registrar informe
                     </PrimaryButton>
                   </div>

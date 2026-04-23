@@ -4,6 +4,7 @@ import { Lock, Mail, Eye, EyeOff } from 'lucide-react'
 import { Container } from '../components/ui/Container'
 import { PrimaryButton } from '../components/ui/PrimaryButton'
 import { useAuth } from '../context/AuthContext'
+import logoImg from '../assets/logo-centro-patologia.png'
 
 export function Login() {
   const { isAuthenticated, login } = useAuth()
@@ -38,6 +39,17 @@ export function Login() {
     <div className="min-h-[100svh] bg-gradient-to-br from-bg-tint via-white to-soft-blue">
       <Container className="flex min-h-[100svh] items-center justify-center py-16">
         <div className="w-full max-w-md rounded-3xl border border-border-clinic bg-white/85 p-8 shadow-[var(--shadow-card)] backdrop-blur-md sm:p-10">
+          <div className="flex justify-center">
+            <img
+              src={logoImg}
+              alt="Logo Centro de Patología del Sur"
+              className="h-12 w-auto object-contain sm:h-14"
+              width={220}
+              height={56}
+              decoding="async"
+            />
+          </div>
+
           <div className="flex items-center gap-3">
             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-soft-blue text-primary">
               <Lock className="h-5 w-5" strokeWidth={1.75} aria-hidden />
@@ -102,11 +114,11 @@ export function Login() {
               </div>
             ) : null}
 
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <a href="/" className="text-xs font-semibold text-secondary hover:underline">
                 Volver al inicio
               </a>
-              <PrimaryButton type="submit" className="sm:w-auto" disabled={loading}>
+              <PrimaryButton type="submit" className="w-full sm:w-auto" disabled={loading}>
                 {loading ? 'Ingresando...' : 'Ingresar'}
               </PrimaryButton>
             </div>

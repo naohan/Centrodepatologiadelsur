@@ -11,7 +11,7 @@ export const siteContent = {
       { id: 'inicio', label: 'Inicio', href: '#inicio' },
       { id: 'nosotros', label: 'Nosotros', href: '#nosotros' },
       { id: 'servicios', label: 'Servicios', href: '#servicios' },
-      { id: 'puntos-de-recojo', label: 'Puntos de recojo', href: '#puntos-de-recojo' },
+      { id: 'puntos-de-recojo', label: 'Recojo', href: '#puntos-de-recojo' },
       { id: 'resultados', label: 'Resultados', href: '#resultados' },
       { id: 'contacto', label: 'Contacto', href: '#contacto' },
     ],
@@ -141,32 +141,67 @@ export const siteContent = {
 
   pickupPoints: {
     badge: 'Logística',
-    title: 'Puntos de recojo y coordinación',
+    title: 'Coordinación de muestras',
     subtitle:
-      'Facilitamos la recepción y coordinación de muestras desde distintos puntos estratégicos en Arequipa.',
+      'Coordina el envío o recojo de muestras por WhatsApp. Nuestro equipo te indicará el punto y la hora según tu necesidad.',
     whatsappUrl: 'https://wa.link/qwelfv',
     points: [
       {
-        title: 'Punto de recojo 1',
-        address: 'Av. Arequipa 1116',
-        district: 'Alto Selva Alegre',
-        mapUrl:
-          'https://www.google.com/maps/search/?api=1&query=Av.+Arequipa+1116+Alto+Selva+Alegre+Arequipa',
-      },
-      {
-        title: 'Punto de recojo 2',
-        address: 'Urbanización Los Rosales Mz A Lt 4',
-        district: 'Cercado',
-        mapUrl:
-          'https://www.google.com/maps/search/?api=1&query=Urbanizacion+Los+Rosales+Mz+A+Lt+4+Cercado+Arequipa',
-      },
-      {
-        title: 'Punto de recojo 3',
-        address: 'Av. Ejército 101',
+        title: 'Coordinar recojo / envío',
+        address: 'Escríbenos por WhatsApp y te indicamos el punto de coordinación y horarios disponibles.',
         district: 'Arequipa',
-        mapUrl:
-          'https://www.google.com/maps/search/?api=1&query=Av.+Ejercito+101+Arequipa',
       },
+    ],
+  },
+
+  aboutMe: {
+    badge: 'Perfil profesional',
+    title: 'Conóceme',
+    subtitle: 'Experiencia clínica, enfoque diagnóstico y formación continua.',
+    name: 'Jenny Gabriela Fernandez Sivincha',
+    intro:
+      'Soy médica cirujana especializada en Anatomía Patológica, con experiencia en diagnóstico de enfermedades oncológicas y no oncológicas. Mi labor se centra en brindar resultados diagnósticos confiables y oportunos, fundamentales para orientar el tratamiento adecuado de cada paciente.',
+    experience:
+      'Cuento con formación especializada adquirida durante mi residentado en el Hospital Nacional Carlos Alberto Seguín Escobedo (EsSalud), donde he trabajado con un alto volumen de casos clínicos, desarrollando precisión en la evaluación de biopsias y piezas quirúrgicas.',
+    approachTitle: 'Enfoque diagnóstico',
+    approachIntro: 'Ofrezco un servicio basado en:',
+    approachItems: [
+      'Evaluación de biopsias y piezas quirúrgicas',
+      'Diagnóstico en patología oncológica',
+      'Estudios de citología (como tiroides)',
+      'Correlación clínico-patológica para mayor exactitud diagnóstica',
+      'Apoyo en la toma de decisiones médicas junto a especialistas',
+    ],
+    approachClosing:
+      'Mi prioridad es entregar diagnósticos claros, sustentados y en el menor tiempo posible, contribuyendo directamente al bienestar del paciente.',
+    continuousTitle: 'Formación y actualización continua',
+    continuousIntro:
+      'Mantengo una capacitación constante en patología, participando en cursos y congresos especializados a nivel nacional e internacional, incluyendo programas académicos en Argentina y formación vinculada a Harvard University.',
+    trainingsTitle: 'Entrenamientos específicos',
+    trainings: [
+      'Interpretación de biopsias en patología quirúrgica',
+      'Dermatopatología',
+      'Citología con enfoque molecular',
+      'Patología digestiva y ginecológica',
+    ],
+    continuousClosing:
+      'Esta actualización continua me permite aplicar criterios modernos y alineados con estándares internacionales en cada diagnóstico.',
+    commitmentTitle: 'Compromiso con el paciente',
+    commitmentIntro: 'Entiendo que detrás de cada muestra hay una persona. Por ello, mi trabajo se basa en:',
+    commitmentItems: [
+      'Rigurosidad científica',
+      'Ética profesional',
+      'Comunicación clara con el equipo médico',
+      'Compromiso con diagnósticos precisos y confiables',
+    ],
+    commitmentClosing:
+      'Mi objetivo es aportar seguridad y confianza tanto al paciente como al médico tratante.',
+    valueTitle: 'Valor diferencial',
+    valueItems: [
+      'Experiencia en hospital de alta complejidad',
+      'Enfoque especializado en oncología',
+      'Actualización internacional constante',
+      'Diagnóstico integral y orientado a decisiones clínicas',
     ],
   },
 

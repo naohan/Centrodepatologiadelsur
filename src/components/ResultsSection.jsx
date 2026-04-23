@@ -137,16 +137,10 @@ export function ResultsSection() {
                 </div>
 
                 <div>
-                  <p className="text-sm font-semibold text-text-dark">{results.captchaLabel}</p>
-                  <div
-                    className="mt-2 flex min-h-[76px] items-center justify-center rounded-xl border border-dashed border-border-clinic bg-gradient-to-br from-bg-tint to-soft-blue/40 px-4 py-6 text-center"
-                    role="img"
-                    aria-label={results.captchaPlaceholder}
-                  >
-                    <span className="text-xs font-medium uppercase tracking-wider text-text-muted">
-                      {results.captchaPlaceholder}
-                    </span>
-                  </div>
+                  <p className="text-xs leading-relaxed text-text-muted">
+                    La verificación de seguridad (reCAPTCHA/Turnstile) se habilitará cuando se configure la clave del
+                    sitio y validación en el backend.
+                  </p>
                 </div>
 
                 <PrimaryButton type="submit" className="w-full sm:w-auto">

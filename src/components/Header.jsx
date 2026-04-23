@@ -67,6 +67,12 @@ export function Header() {
               {item.label}
             </a>
           ))}
+          <Link
+            to="/conoceme"
+            className="rounded-lg px-3 py-2 text-sm font-medium text-text-muted transition-colors hover:bg-soft-blue/60 hover:text-primary"
+          >
+            Conóceme
+          </Link>
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
@@ -75,7 +81,7 @@ export function Header() {
             className="inline-flex items-center gap-2 rounded-xl border border-border-clinic bg-white px-4 py-2.5 text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-soft-blue/60"
           >
             <UserCog className="h-4 w-4" aria-hidden />
-            Acceso admin
+            Login
           </Link>
           <a
             href={navigation.whatsappUrl}
@@ -124,6 +130,13 @@ export function Header() {
                   {item.label}
                 </motion.a>
               ))}
+              <Link
+                to="/conoceme"
+                className="rounded-xl px-4 py-3 text-base font-medium text-text-dark hover:bg-soft-blue"
+                onClick={() => setOpen(false)}
+              >
+                Conóceme
+              </Link>
               <a
                 href={navigation.whatsappUrl}
                 target="_blank"
@@ -141,7 +154,7 @@ export function Header() {
                 onClick={() => setOpen(false)}
               >
                 <UserCog className="h-5 w-5" aria-hidden />
-                Acceso admin
+                Login
               </Link>
             </Container>
           </motion.div>
