@@ -1,7 +1,27 @@
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Home } from './pages/Home'
+import { Login } from './pages/Login'
+import { Admin } from './pages/Admin'
+import { RequireAuth } from './components/auth/RequireAuth'
 
 function App() {
-  return <Home />
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/admin"
+          element={
+            <RequireAuth>
+              <Admin />
+            </RequireAuth>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App

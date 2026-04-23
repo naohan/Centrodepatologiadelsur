@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Lock, Fingerprint, Zap, Shield } from 'lucide-react'
+import { Lock, Fingerprint, Zap, Shield, Download } from 'lucide-react'
 import { Container } from './ui/Container'
 import { SectionHeading } from './ui/SectionHeading'
 import { PrimaryButton } from './ui/PrimaryButton'
 import { Reveal } from './ui/Reveal'
 import { siteContent } from '../data/siteContent'
+import { api } from '../lib/api'
 
 const sidebarIcons = [Lock, Fingerprint, Zap]
 
@@ -13,9 +14,44 @@ export function ResultsSection() {
   const { results } = siteContent
   const [dni, setDni] = useState('')
   const [code, setCode] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [downloading, setDownloading] = useState(false)
+  const [error, setError] = useState('')
+  const [data, setData] = useState(null)
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
+    setError('')
+    setData(null)
+    setLoading(true)
+    try {
+      const res = await api.resultados(dni.trim(), code.trim(), 'json')
+      setData(res)
+    } catch (err) {
+      setError(err?.payload?.error || err.message || 'Error')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function handleDownloadPdf() {
+    setError('')
+    setDownloading(true)
+    try {
+      const blob = await api.resultados(dni.trim(), code.trim(), 'pdf')
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `informe-${(data?.numero_informe || '').toString().trim() || 'resultado'}.pdf`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    } catch (err) {
+      setError(err?.payload?.error || err.message || 'Error')
+    } finally {
+      setDownloading(false)
+    }
   }
 
   return (
@@ -114,8 +150,74 @@ export function ResultsSection() {
                 </div>
 
                 <PrimaryButton type="submit" className="w-full sm:w-auto">
-                  {results.submitLabel}
+                  {loading ? 'Consultando...' : results.submitLabel}
                 </PrimaryButton>
+
+                {error ? (
+                  <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                    {error}
+                  </div>
+                ) : null}
+
+                {data ? (
+                  <div className="space-y-4 rounded-2xl border border-border-clinic bg-white/80 p-5 text-sm text-text-dark shadow-sm">
+                    <div className="rounded-2xl border border-border-clinic bg-white px-4 py-4">
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                            Paciente
+                          </p>
+                          <p className="mt-1 truncate text-base font-semibold text-text-dark">
+                            {data.nombres} {data.apellidos}
+                          </p>
+                        </div>
+                        <div className="flex flex-wrap gap-3">
+                          <div className="rounded-xl border border-border-clinic bg-bg-tint/60 px-4 py-2">
+                            <p className="text-[11px] font-semibold uppercase tracking-wider text-text-muted">DNI</p>
+                            <p className="mt-0.5 font-semibold text-text-dark">{data.dni}</p>
+                          </div>
+                          <div className="rounded-xl border border-border-clinic bg-bg-tint/60 px-4 py-2">
+                            <p className="text-[11px] font-semibold uppercase tracking-wider text-text-muted">
+                              N° Informe
+                            </p>
+                            <p className="mt-0.5 font-semibold text-text-dark">{data.numero_informe}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="rounded-2xl border border-border-clinic bg-white px-4 py-4">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-text-muted">Diagnóstico</p>
+                      <p className="mt-2 whitespace-pre-wrap leading-relaxed text-text-dark">
+                        {data.diagnostico || '-'}
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-border-clinic bg-white px-4 py-4">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                        Descripción macroscópica
+                      </p>
+                      <p className="mt-2 whitespace-pre-wrap leading-relaxed text-text-dark">
+                        {data.descripcion_macroscopica || '-'}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <p className="text-xs text-text-muted">
+                        Si necesitas el informe para imprimir, puedes descargarlo en PDF.
+                      </p>
+                      <button
+                        type="button"
+                        onClick={handleDownloadPdf}
+                        disabled={downloading}
+                        className="inline-flex items-center justify-center gap-2 rounded-xl border border-border-clinic bg-white px-4 py-2.5 text-sm font-semibold text-primary shadow-sm transition hover:bg-soft-blue/60 disabled:opacity-60"
+                      >
+                        <Download className="h-4 w-4" aria-hidden />
+                        {downloading ? 'Generando PDF...' : 'Descargar PDF'}
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
 
                 <p className="flex items-start gap-2 text-xs leading-relaxed text-text-muted">
                   <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-secondary" aria-hidden />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, MessageCircle } from 'lucide-react'
+import { Menu, X, MessageCircle, UserCog } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import logoImg from '../assets/logo-centro-patologia.png'
 import { Container } from './ui/Container'
 import { siteContent } from '../data/siteContent'
@@ -69,6 +70,13 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
+          <Link
+            to="/login"
+            className="inline-flex items-center gap-2 rounded-xl border border-border-clinic bg-white px-4 py-2.5 text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-soft-blue/60"
+          >
+            <UserCog className="h-4 w-4" aria-hidden />
+            Acceso admin
+          </Link>
           <a
             href={navigation.whatsappUrl}
             target="_blank"
@@ -126,6 +134,15 @@ export function Header() {
                 <MessageCircle className="h-5 w-5" aria-hidden />
                 Contactar por WhatsApp
               </a>
+
+              <Link
+                to="/login"
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl border border-border-clinic bg-white px-4 py-3.5 text-base font-semibold text-primary"
+                onClick={() => setOpen(false)}
+              >
+                <UserCog className="h-5 w-5" aria-hidden />
+                Acceso admin
+              </Link>
             </Container>
           </motion.div>
         ) : null}
