@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
       user,
       isAuthenticated: !!token,
       role: user?.rol || null,
-      canWrite: ['admin', 'laboratorio'].includes(user?.rol),
+      canWrite: ['admin', 'laboratorio', 'medico'].includes(user?.rol),
       isAdmin: user?.rol === 'admin',
       login,
       logout,

@@ -60,10 +60,8 @@ export function AboutMe() {
   ]
 
   const entrenamientos = [
-    { icon: Microscope, text: 'Interpretación de biopsias en patología quirúrgica' },
-    { icon: Stethoscope, text: 'Dermatopatología' },
-    { icon: Waypoints, text: 'Citología con enfoque molecular' },
-    { icon: ClipboardCheck, text: 'Patología digestiva y ginecológica' },
+    { icon: Microscope, text: 'Maestría en Cáncer de Origen Desconocido' },
+    { icon: ClipboardCheck, text: 'Maestría en Actualización en Patología Oncológica' },
   ]
 
   const diferenciales = [
@@ -206,7 +204,7 @@ export function AboutMe() {
                   </span>
                   <div>
                     <h3 className="text-lg font-semibold text-text-dark sm:text-xl">{aboutMe.trainingsTitle}</h3>
-                    <p className="mt-1 text-sm text-text-muted">Entrenamientos específicos</p>
+                    <p className="mt-1 text-sm text-text-muted">Universidad TECH de España</p>
                   </div>
                 </div>
 

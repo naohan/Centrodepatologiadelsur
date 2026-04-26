@@ -174,18 +174,16 @@ export const siteContent = {
     ],
     approachClosing:
       'Mi prioridad es entregar diagnósticos claros, sustentados y en el menor tiempo posible, contribuyendo directamente al bienestar del paciente.',
-    continuousTitle: 'Formación y actualización continua',
+    continuousTitle: 'Formación académica y experiencia internacional',
     continuousIntro:
-      'Mantengo una capacitación constante en patología, participando en cursos y congresos especializados a nivel nacional e internacional, incluyendo programas académicos en Argentina y formación vinculada a Harvard University.',
-    trainingsTitle: 'Entrenamientos específicos',
+      'Cuento con formación académica y entrenamiento en instituciones de referencia nacional e internacional. He participado en programas académicos vinculados a Harvard University, fortaleciendo mi enfoque diagnóstico con estándares globales.',
+    trainingsTitle: 'Programas de posgrado',
     trainings: [
-      'Interpretación de biopsias en patología quirúrgica',
-      'Dermatopatología',
-      'Citología con enfoque molecular',
-      'Patología digestiva y ginecológica',
+      'Maestría en Cáncer de Origen Desconocido',
+      'Maestría en Actualización en Patología Oncológica',
     ],
     continuousClosing:
-      'Esta actualización continua me permite aplicar criterios modernos y alineados con estándares internacionales en cada diagnóstico.',
+      'Asimismo, he realizado formación y/o experiencia académica en el Instituto Nacional de Enfermedades Neoplásicas (INEN), centro de referencia en oncología en el Perú, y en el Hospital Británico de Buenos Aires, institución reconocida por su excelencia en práctica clínica y diagnóstica.',
     commitmentTitle: 'Compromiso con el paciente',
     commitmentIntro: 'Entiendo que detrás de cada muestra hay una persona. Por ello, mi trabajo se basa en:',
     commitmentItems: [
